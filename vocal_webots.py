@@ -1,10 +1,15 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 clients = []
+
+# ✅ Route HTTP classique pour tester que le backend est actif
+@app.route('/')
+def index():
+    return jsonify({"message": "Serveur Flask SocketIO en ligne"})
 
 # Reçoit les commandes du frontend
 @socketio.on('send_command')
