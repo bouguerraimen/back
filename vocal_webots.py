@@ -35,3 +35,18 @@ def handle_disconnect():
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=5000)
+
+
+# Gestion des connexions robots
+@socketio.on('connect')
+def handle_connect():
+    clients.append(request.sid)
+    print(f"Robot connecté : {request.sid}")
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    clients.remove(request.sid)
+    print(f"Robot déconnecté : {request.sid}")
+
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', port=5000)
