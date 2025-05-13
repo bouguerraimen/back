@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_socketio import SocketIO
-
+from flask_cors import CORS
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+CORS(app, origins="https://front-npmn.onrender.com/")  
+
+socketio = SocketIO(app, cors_allowed_origins="https://front-npmn.onrender.com/")
 
 clients = []
 
